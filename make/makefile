@@ -37,13 +37,16 @@ endef
 define all-cpp-files-under
 $(call all-files-under,$(1),*.cpp)
 endef
-
-c-files := $(call all-c-files-under,.)
-cpp-files := $(call all-cpp-files-under,.)
-cpp-files += $(call all-cpp-files-under,src)
+define all-mk-files-under
+$(call all-files-under,$(1),*.mk)
+endef
+define all-go-files-under
+$(call all-files-under,$(1),*.go)
+endef
+define all-h-files-under
+$(call all-files-under,$(1),*.h)
+endef
 
 all:
-	@echo $(c-files)
-	@echo $(cpp-files)
 
 #######################################################################
