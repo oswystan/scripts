@@ -47,6 +47,29 @@ define all-h-files-under
 $(call all-files-under,$(1),*.h)
 endef
 
+#####################################################
+## add -L for each $(1) for ld lib searching
+#####################################################
+define add-ld-lib-path
+$(strip \
+	$(foreach p,$(1),\
+		$(addprefix -L,$(p))\
+	)\
+)
+endef
+
+#####################################################
+## add -I for each $(1) for header file searching
+#####################################################
+define add-header-path
+$(strip \
+	$(foreach p,$(1),\
+		$(addprefix -I,$(p))\
+	)\
+)
+endef
+
 all:
+
 
 #######################################################################
