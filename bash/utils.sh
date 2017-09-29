@@ -10,11 +10,12 @@
 ###########################################################################
 function git_version() {
     if [[ $# == 1 && $1 == "-s" ]]; then
-        ver="$(git branch|cut -d' ' -f2)-$(git rev-parse --short HEAD)"
+        ver="$(git branch|grep '*'|cut -d' ' -f2)-$(git rev-parse --short HEAD)"
     else
-        ver="$(git branch|cut -d' ' -f2)-$(git rev-parse HEAD)"
+        ver="$(git branch|grep '*'|cut -d' ' -f2)-$(git rev-parse HEAD)"
     fi
     echo $ver
 }
 
 ###########################################################################
+git_version -s
