@@ -10,24 +10,31 @@
 ###########################################################################
 
 function _start() {
-    echo "###########################################"
-    echo "## $1"
-    echo "###########################################"
+    echo "==> start $1"
+    echo "-------------------------------------------"
 }
 
 function _end() {
     if [ $1 -eq 0 ]; then
-        echo "################ SUCCESS ##################"
+        echo "---------------- SUCCESS ------------------"
     else
-        echo "################ FAILED ###################"
+        echo "**************** FAILED *******************"
+        exit $1
     fi
 }
 
 function do_sth() {
-    _start "start downloading" && \
-        mkdir dir1 && cd dir2 && \
-    _end 0 || _end 1
+    _start "downloading ..."
+        mkdir dir1 && cd dir1
+    [ $? -eq 0 ] && _end 0 || _end 1
+}
+
+function do_th() {
+    _start "compiling ..."
+        mkdir dir2 && cd dir2
+    [ $? -eq 0 ] && _end 0 || _end 1
 }
 
 ###########################################################################
 do_sth
+do_th
