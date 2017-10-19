@@ -26,13 +26,13 @@ function _end() {
 function do_sth() {
     _start "downloading ..."
         mkdir dir1 && cd dir1
-    [ $? -eq 0 ] && _end 0 || _end 1
+    _end $?
 }
 
 function do_th() {
     _start "compiling ..."
         mkdir dir2 && cd dir2
-    [ $? -eq 0 ] && _end 0 || _end 1
+    _end $?
 }
 
 ###########################################################################
