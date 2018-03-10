@@ -4,43 +4,36 @@ log_file="log.txt"
 ################################
 # some basic functions for log
 ################################
-log_start()
-{
-    strNow=`date +'%Y-%m-%d %H:%M:%S'`
-    echo "[${strNow}]##########################################################"
-    echo "[${strNow}] start program  : $0"
-    echo "[${strNow}]##########################################################"
+ts() {
+    echo "$(date '+%Y-%m-%dT%T.%3N%z')"
+}
+
+log_start() {
+    echo "[I|$(ts)]##########################################################"
+    echo "[I|$(ts)] start program  : $0"
+    echo "[I|$(ts)]##########################################################"
     echo ""
 }
 
-logi()
-{
-    strNow=`date +'%Y-%m-%d %H:%M:%S'`
-    echo "[${strNow}] INFO:$*"
+logi() {
+    echo "[I|$(ts)]$*"
 }
 
-logw()
-{
-    strNow=`date +'%Y-%m-%d %H:%M:%S'`
-    echo "[${strNow}] WARN:$*"
+logw() {
+    echo "[W|$(ts)]$*"
 }
 
-loge()
-{
-    strNow=`date +'%Y-%m-%d %H:%M:%S'`
-    echo "[${strNow}]ERROR:$*"
+loge() {
+    echo "[E|$(ts)]$*"
 }
 
-log_end()
-{
-    strNow=`date +'%Y-%m-%d %H:%M:%S'`
+log_end() {
     echo ""
-    echo "[${strNow}]##########################################################"
-    echo "[${strNow}] finished $0"
-    echo "[${strNow}]##########################################################"
+    echo "[I|$(ts)]##########################################################"
+    echo "[I|$(ts)] finished $0"
+    echo "[I|$(ts)]##########################################################"
 }
-safe_exec()
-{
+safe_exec() {
     if [ $# -eq 0 ]; then
         exit 1
     fi
@@ -52,8 +45,7 @@ safe_exec()
     fi
 }
 
-do_work()
-{
+do_work() {
     log_start
 
     log_end
