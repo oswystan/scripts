@@ -8,11 +8,11 @@
 ##         author: wystan
 ##
 ###########################################################################
-function git_version() {
+git_version() {
     if [[ $# == 1 && $1 == "-s" ]]; then
-        ver="$(git branch|grep '*'|cut -d' ' -f2)-$(git rev-parse --short HEAD)"
+        ver="$(git rev-parse --abbrev-ref HEAD)-$(git rev-parse --short HEAD)"
     else
-        ver="$(git branch|grep '*'|cut -d' ' -f2)-$(git rev-parse HEAD)"
+        ver="$(git rev-parse --abbrev-ref HEAD)-$(git rev-parse HEAD)"
     fi
     echo $ver
 }
