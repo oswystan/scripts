@@ -10,11 +10,6 @@
  *********************************************************************************
  */
 
-let ts = function() {
-    let parts = new Date().toISOString().split("T");
-    return parts[0] + " " + parts[1].split("Z")[0];
-};
-
 const LOG_VERBOSE = 5;
 const LOG_DEBUG   = 4;
 const LOG_INFO    = 3;
@@ -23,10 +18,10 @@ const LOG_ERROR   = 1;
 const LOG_NO_LOG  = 0;
 let LOG_CUR_LEVEL = LOG_VERBOSE;
 
-const logv = (...args) => LOG_CUR_LEVEL >= LOG_VERBOSE && console.log.apply  (null, [ts() + "[V]", ...args]);
-const logd = (...args) => LOG_CUR_LEVEL >= LOG_DEBUG   && console.log.apply  (null, [ts() + "[D]", ...args]);
-const logi = (...args) => LOG_CUR_LEVEL >= LOG_INFO    && console.info.apply (null, [ts() + "[I]", ...args]);
-const logw = (...args) => LOG_CUR_LEVEL >= LOG_WARN    && console.warn.apply (null, [ts() + "[W]", ...args]);
-const loge = (...args) => LOG_CUR_LEVEL >= LOG_ERROR   && console.error.apply(null, [ts() + "[E]", ...args]);
+const logv = (...args) => LOG_CUR_LEVEL >= LOG_VERBOSE && console.log.apply  (null, ["V|" + new Date().toISOString(), ...args]);
+const logd = (...args) => LOG_CUR_LEVEL >= LOG_DEBUG   && console.log.apply  (null, ["D|" + new Date().toISOString(), ...args]);
+const logi = (...args) => LOG_CUR_LEVEL >= LOG_INFO    && console.info.apply (null, ["I|" + new Date().toISOString(), ...args]);
+const logw = (...args) => LOG_CUR_LEVEL >= LOG_WARN    && console.warn.apply (null, ["W|" + new Date().toISOString(), ...args]);
+const loge = (...args) => LOG_CUR_LEVEL >= LOG_ERROR   && console.error.apply(null, ["E|" + new Date().toISOString(), ...args]);
 
 /************************************* END **************************************/
