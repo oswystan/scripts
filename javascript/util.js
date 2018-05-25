@@ -20,5 +20,19 @@ function make_rand_id(len = 10) {
     return text;
 }
 
+function clone_object(src) {
+    if (typeof src !== "object") {
+        return src;
+    } else if (Array.isArray(src)) {
+        return Array.from(src);
+    }
+    let ret = Object.create(null);
+
+    for (let attr in src) {
+        ret[attr] = clone_object(src[attr]);
+    }
+    return ret;
+}
+
 
 /************************************* END **************************************/
