@@ -20,6 +20,14 @@ function make_rand_id(len = 10) {
     return text;
 }
 
+function random_u32() {
+	return Math.floor(Math.random()*4294967296);
+}
+
+function random_u16() {
+	return Math.floor(Math.random()*65536);
+}
+
 function clone_object(src) {
     if (typeof src !== "object") {
         return src;
