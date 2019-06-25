@@ -25,7 +25,11 @@ function _end() {
 
 function do_sth() {
     _start "downloading ..."
-        mkdir dir1 && cd dir1
+        mkdir dir1 && cd dir1 && \
+        ( \
+            [ ! -f b ] && touch b || echo -n ""
+        ) && \
+        mkdir a
     _end $?
 }
 
